@@ -104,6 +104,24 @@ def addgym(request):
         ins.save()
     return render(request,'index.html',{'message':'Successfully Registered'})
 
+def announcement(request):
+    return render(request,'announcement.html')
+
+def addannouncement(request):
+    if request.method=='POST':
+        announcement=request.POST.get('announcement')
+        date=request.POST.get('date')
+    
+        ins=announcement_detail(announcement=announcement,date=date)
+        ins.save()
+    return render(request,'index.html',{'message':'Successfully Registered'})
+
+
+
+def view_announcement(request):
+    a=announcement_detail.objects.all()
+    return render(request,'view_announcement.html',{'result':a})
+
 def hall(request):
     return render(request,'hall.html')
 

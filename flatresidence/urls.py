@@ -84,6 +84,9 @@ urlpatterns = [
     path('view_workassign',views.view_workassign),
     path('payments_view',views.payments_view),
     path('my_bookings',views.my_bookings),
+    path('announcement',views.announcement),
+    path('addannouncement',views.addannouncement),
+    path('view_announcement',views.view_announcement),
 
 
     path('admin/', admin.site.urls),

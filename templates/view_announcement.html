@@ -14,7 +14,7 @@
       <div class="row">
         <div class="col-md-12 col-lg-8">
           <div class="title-single-box">
-            <h1 class="title-single">View Members</h1>
+            <h1 class="title-single">Announcement Details</h1>
           </div>
         </div>
         <div class="col-md-12 col-lg-4">
@@ -24,7 +24,7 @@
                 <a href="index.html">Home</a>
               </li>
               <li class="breadcrumb-item active" aria-current="page">
-                View Staff
+                Payments
               </li>
             </ol>
           </nav>
@@ -43,23 +43,15 @@
           
              <table border="1" style="width: 100%;">
                 <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Phone</th>
-                    <th>Flat Number</th>
-                    <th>Residency</th>
-                    <th>Number of members</th>
-                    <th>Remove</th>
+                    <th>Announcement</th>
+                    <th>Date</th>
+                   
                 </tr>
                 {% for i in result %}
                 <tr>
-                    <td>{{i.name}}</td>
-                    <td>{{i.email}}</td>
-                    <td>{{i.phone}}</td>
-                    <td>{{i.flat_no}}</td>
-                    <td>{{i.typee}}</td>
-                    <td>{{i.no_member}}</td>
-                    <td><a class="btn btn-success" href="remove_member/{{i.id}}">Remove</a></td>
+                    <td>{{i.announcement}}</td>
+                    <td>{{i.date}}</td>
+                  
                 </tr>
                 {% endfor %}
              </table>

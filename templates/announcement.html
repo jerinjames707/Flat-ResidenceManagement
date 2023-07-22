@@ -1,0 +1,101 @@
+ 
+ {% block content %}
+ {% load static %}
+ 
+ {% include 'header.html' %}
+ <script type="text/javascript" src="https://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+ <!--/ Intro Single star /-->
+ <section class="intro-single">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-lg-8">
+          <div class="title-single-box">
+            <h1 class="title-single">Add Announcement </h1>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-4">
+          <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="index.html">Home</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Announcement
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--/ Intro Single End /-->
+
+  <!--/ Contact Star /-->
+  <section class="contact">
+    <div class="container">
+      <div class="row">
+       
+        <div class="col-sm-12 section-t8">
+          <div class="row">
+            <div class="col-md-7">
+              <form class="form-a contactForm" action="addannouncement" method="post" role="form">
+                {% csrf_token %}
+                <div id="sendmessage">Your message has been sent. Thank you!</div>
+                <div id="errormessage"></div>
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <div class="form-group">
+                      <textarea name="announcement" id="" placeholder="Announcement " cols="30" rows="10"></textarea>
+                      <div class="validation"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <div class="form-group">
+                      <input type="datetime-local" id="date_picker"  name="date" class="form-control form-control-lg form-control-a" placeholder="Date & Time" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                      <div class="validation"></div>
+                    </div>
+                  </div>
+                  <script>
+                    $(document).ready(function() {
+                        // Function to get the current date and time in the input format (YYYY-MM-DDTHH:mm)
+                        function getCurrentDateTime() {
+                            var today = new Date();
+                            var yyyy = today.getFullYear();
+                            var mm = String(today.getMonth() + 1).padStart(2, '0');
+                            var dd = String(today.getDate()).padStart(2, '0');
+                            var hh = String(today.getHours()).padStart(2, '0');
+                            var min = String(today.getMinutes()).padStart(2, '0');
+                            return yyyy + '-' + mm + '-' + dd + 'T' + hh + ':' + min;
+                        }
+                
+                        // Set the minimum value of the input to the current date and time
+                        $('#date_picker').attr('min', getCurrentDateTime());
+                
+                        // Function to update the minimum attribute based on the current time
+                        function updateMinimumTime() {
+                            $('#date_picker').attr('min', getCurrentDateTime());
+                        }
+                
+                        // Listen for changes in the input field and update the minimum attribute dynamically
+                        $('#date_picker').on('change', function() {
+                            updateMinimumTime();
+                        });
+                    });
+                </script>
+                  <div class="col-md-12">
+                    <button type="submit" class="btn btn-a">Submit</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--/ Contact End /-->
+  {% include 'footer.html' %}
+
+  {% endblock %}

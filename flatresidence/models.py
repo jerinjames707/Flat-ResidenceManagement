@@ -22,6 +22,10 @@ class gym_detail(models.Model):
     name=models.CharField(max_length=100)
     time=models.CharField(max_length=100)
 
+class announcement_detail(models.Model):
+    announcement=models.CharField(max_length=100)
+    date=models.CharField(max_length=100)
+
 class hall_detail(models.Model):
     name=models.CharField(max_length=100)
     time=models.CharField(max_length=100)
