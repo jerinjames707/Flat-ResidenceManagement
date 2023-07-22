@@ -1,0 +1,66 @@
+ 
+ {% block content %}
+ {% load static %}
+ 
+ {% include 'header.html' %}
+ <style>
+    th{
+        background-color: #2eca6a;
+    }
+ </style>
+ <!--/ Intro Single star /-->
+ <section class="intro-single">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-lg-8">
+          <div class="title-single-box">
+            <h1 class="title-single">GYM Details</h1>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-4">
+          <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="index.html">Home</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Gym
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--/ Intro Single End /-->
+
+  <!--/ Contact Star /-->
+  <section class="contact">
+    <div class="container">
+      <div class="row">
+       
+        <div class="col-sm-12 ">
+          
+             <table border="1" style="width: 100%;">
+                <tr>
+                    <th>Name</th>
+                    <th>Working Time</th>
+                    <th>Book</th>
+                </tr>
+                {% for i in result %}
+                <tr>
+                    <td>{{i.name}}</td>
+                    <td>{{i.time}}</td>
+                    <td><a class="btn btn-success" href="bookgym/{{i.id}}">Book</a></td>
+                </tr>
+                {% endfor %}
+             </table>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--/ Contact End /-->
+  {% include 'footer.html' %}
+
+  {% endblock %}

@@ -1,0 +1,82 @@
+ 
+ {% block content %}
+ {% load static %}
+ 
+ {% include 'header.html' %}
+ <style>
+
+ </style>
+ <!--/ Intro Single star /-->
+ <section class="intro-single">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-lg-8">
+          <div class="title-single-box">
+            <h1 class="title-single">Profile Details</h1>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-4">
+          <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="index.html">Home</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Profile
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--/ Intro Single End /-->
+
+  <!--/ Contact Star /-->
+  <section class="contact">
+    <div class="container">
+      <div class="row">
+       
+        <div class="col-sm-12 ">
+          
+             <table border="1" style="width: 100%;">
+                <tr>
+                    <th>Name</th>
+                    <td>{{result.name}}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{{result.email}}</td>
+                </tr>
+                <tr>
+                    <th>Phone</th>
+                    <td>{{result.phone}}</td>
+                </tr>
+                <tr>
+                    <th>Flat Number</th>
+                    <td>{{result.flat_no}}</td>
+                </tr>
+                <tr>
+                    <th>Type of residency</th>
+                    <td>{{result.typee}}</td>
+                </tr>
+                <tr>
+                    <th>Number of members</th>
+                    <td>{{result.no_member}}</td>
+                </tr>
+                <tr>
+                    <th>Password</th>
+                    <td>{{result.password}}</td>
+                </tr>
+              
+               
+             </table><br>
+             <a class="btn btn-success" href="update/{{result.id}}">Update</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--/ Contact End /-->
+  {% include 'footer.html' %}
+
+  {% endblock %}

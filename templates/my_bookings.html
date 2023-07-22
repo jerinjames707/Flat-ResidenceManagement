@@ -1,0 +1,122 @@
+ 
+ {% block content %}
+ {% load static %}
+ 
+ {% include 'header.html' %}
+ <style>
+    th{
+        background-color: #2eca6a;
+    }
+ </style>
+ <!--/ Intro Single star /-->
+ <section class="intro-single">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-lg-8">
+          <div class="title-single-box">
+            <h1 class="title-single">Your Bookings Status</h1>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-4">
+          <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="index.html">Home</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Bookings
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--/ Intro Single End /-->
+
+  <!--/ Contact Star /-->
+  <section class="contact">
+    <div class="container">
+      <div class="row">
+       <h2>Hall </h2>
+        <div class="col-sm-12 ">
+          
+             <table border="1" style="width: 100%;">
+                <tr>
+                    <th>Hall Name</th>
+                    <th>Date & Time</th>
+                    <th>Seats Booked</th>
+                    <th>Status</th>
+                  </tr>
+                {% for i in result %}
+                <tr>
+                    <td>{{i.name}}</td>
+                    <td>{{i.time}}</td>
+                    <td>{{i.seat}}</td>
+                    <td>{{i.status}}</td>
+                   </tr>
+                {% endfor %}
+             </table>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+  <br>
+  <section class="contact">
+    <div class="container">
+      <div class="row">
+       <h2>Gym </h2>
+        <div class="col-sm-12 ">
+          
+             <table border="1" style="width: 100%;">
+                <tr>
+                    <th>Gym Name</th>
+                    <th>Date & Time</th>
+                    <th>Status</th>
+                  </tr>
+                {% for i in result1 %}
+                <tr>
+                    <td>{{i.name}}</td>
+                    <td>{{i.time}}</td>
+                    <td>{{i.status}}</td>
+                   </tr>
+                {% endfor %}
+             </table>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+  <br>
+  <br>
+  <section class="contact">
+    <div class="container">
+      <div class="row">
+       <h2>Pool </h2>
+        <div class="col-sm-12 ">
+          
+             <table border="1" style="width: 100%;">
+                <tr>
+                    <th>Pool Name</th>
+                    <th>Date & Time</th>
+                    <th>Status</th>
+                  </tr>
+                {% for i in result2 %}
+                <tr>
+                    <td>{{i.name}}</td>
+                    <td>{{i.time}}</td>
+                    <td>{{i.status}}</td>
+                   </tr>
+                {% endfor %}
+             </table>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--/ Contact End /-->
+  {% include 'footer.html' %}
+
+  {% endblock %}
