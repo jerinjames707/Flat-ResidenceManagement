@@ -41,7 +41,7 @@ def addlogin(request):
     if email == 'admin@gmail.com' and password =='admin':
         request.session['logintdetail'] = email
         request.session['admin'] = 'admin'
-        return render(request,'index.html')
+        return redirect(index)
 
     elif member.objects.filter(email=email,password=password).exists():
         userdetails=member.objects.get(email=request.POST['email'], password=password)
@@ -50,9 +50,7 @@ def addlogin(request):
             request.session['mname'] = userdetails.name
 
             request.session['memail'] = email
-
-
-            return render(request,'index.html')
+            return redirect(index)
     elif staff.objects.filter(email=email,password=password).exists():
         userdetails=staff.objects.get(email=request.POST['email'], password=password)
         if userdetails.password == request.POST['password']:
@@ -62,7 +60,7 @@ def addlogin(request):
             request.session['semail'] = email
 
 
-            return render(request,'index.html')
+            return redirect(index)
 
     
     else:
