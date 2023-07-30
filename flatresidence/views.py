@@ -17,19 +17,34 @@ def index(request):
 def register(request):
     return render(request,'register.html')
 
-def adduser(request):
-    if request.method=='POST':
-        name=request.POST.get('name')
-        email=request.POST.get('email')
-        phone=request.POST.get('phone')
-        flat_no=request.POST.get('flat_no')
-        typee=request.POST.get('typee')
-        no_member=request.POST.get('no_member')
-        password=request.POST.get('password')
 
-        ins=member(name=name,email=email,phone=phone,flat_no=flat_no,typee=typee,password=password,no_member=no_member)
+def adduser(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        phone = request.POST.get('phone')
+        flat_no = request.POST.get('flat_no')
+        typee = request.POST.get('typee')
+        no_member = request.POST.get('no_member')
+        password = request.POST.get('password')
+
+        # Check if the email already exists in the member table
+        if member.objects.filter(email=email).exists():
+            # Email already exists, display an alert message
+            return render(request, 'index.html', {'message': 'Email already exists. Please use a different email.'})
+
+        # Email is unique, proceed with inserting the data into the table
+        ins = member(name=name, email=email, phone=phone, flat_no=flat_no, typee=typee, password=password, no_member=no_member)
         ins.save()
-    return render(request,'index.html',{'message':'Successfully Registered'})
+
+        return render(request, 'index.html', {'message': 'Successfully Registered'})
+
+    return render(request, 'index.html')
+
+
+
+
+
 
 def login(request):
     return render(request,'login.html')
@@ -85,9 +100,16 @@ def addstaff(request):
         place=request.POST.get('place')
         password=request.POST.get('password')
 
+        if staff.objects.filter(email=email).exists():
+            # Email already exists, display an alert message
+            return render(request, 'index.html', {'message': 'Email already exists. Please use a different email.'})
+
         ins=staff(name=name,email=email,phone=phone,place=place,password=password)
         ins.save()
-    return render(request,'index.html',{'message':'Successfully Registered'})
+
+        return render(request,'index.html',{'message':'Successfully Registered'})
+    
+    return render(request,'index.html')
 
 
 def gym(request):
