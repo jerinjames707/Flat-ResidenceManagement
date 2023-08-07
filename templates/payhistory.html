@@ -12,38 +12,12 @@
  <section class="intro-single">
     <div class="container">
 
-  <div class="row">
-    <div class="col-md-6 col-lg-6">
-      <form action="searchdate" method="post">
-        {% csrf_token %}
-            <div class="position-relative mx-auto" style="max-width: 400px;">
-                <h4> First Date </h4>
-                <input required style="background-color: rgb(190, 238, 200);"  name="s_date" class="form-control border-0 w-100 py-3 ps-4 pe-5" type="date" placeholder="Search With Date">
-                <h4> Second Date </h4>
-                <input required style="background-color: rgb(190, 238, 200);"  name="e_date" class="form-control border-0 w-100 py-3 ps-4 pe-5" type="date" placeholder="Search With Date"><br>
-                <button type="submit" class="btn btn-primary ">Search</button>
-            </div>
-      </form>
-    </div>
-    <div class="col-md-6 col-lg-6">
-      <form action="search" method="post">
-        {% csrf_token %}
-            <div class="position-relative mx-auto" style="max-width: 400px;">
-                <h4>Daily sale report</h4>
-                <input required style="background-color: rgb(190, 238, 200);"  name="date" class="form-control border-0 w-100 py-3 ps-4 pe-5" type="date" placeholder="Search With Date"><br>
-                <button type="submit" class="btn btn-primary ">Search</button>
-            </div>
-        </form>
-    </div>
-  </div>
-
-
 
 
       <div class="row">
         <div class="col-md-12 col-lg-8">
           <div class="title-single-box">
-            <h1 class="title-single">Payments Details</h1>
+            <h1 class="title-single">My Payments Details</h1>
           </div>
         </div>
         <div class="col-md-12 col-lg-4">
@@ -72,23 +46,23 @@
           
              <table border="1" style="width: 100%;">
                 <tr>
-                    <th>Member Name</th>
-                    <th>Payment For</th>
+                    <th>Rent </th>
                     <th>Card Type</th>
                     <th>Card Name</th>
                     <th>Card Number</th>
                     <th>Payment Date</th>
                     <th>Amount</th>
+                    <th>View Bill</th>
                 </tr>
                 {% for i in result %}
                 <tr>
-                    <td>{{i.m_id}}</td>
                     <td>{{i.typee}}</td>
                     <td>{{i.cardtype}}</td>
                     <td>{{i.cardname}}</td>
                     <td>{{i.cardnumber}}</td>
                     <td>{{i.date}}</td>
                     <td>{{i.message}}</td>
+                    <td><a class="btn btn-success" href="invoice/{{i.id}}">Bill</a></td>
                 </tr>
                 {% endfor %}
              </table>

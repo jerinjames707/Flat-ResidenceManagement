@@ -73,3 +73,9 @@ class payments(models.Model):
     cvv=models.CharField(max_length=100)
     message=models.CharField(max_length=100)
     date = models.DateField(default=timezone.now)
+
+class complaints(models.Model):
+    issue=models.CharField(max_length=100)
+    detail=models.CharField(max_length=100)
+    m_name=models.CharField(max_length=100)
+    date = models.DateField(default=timezone.now)

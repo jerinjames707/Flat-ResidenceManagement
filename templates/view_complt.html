@@ -1,0 +1,72 @@
+ 
+ {% block content %}
+ {% load static %}
+ 
+ {% include 'header.html' %}
+ <style>
+    th{
+        background-color: #2eca6a;
+    }
+ </style>
+ <!--/ Intro Single star /-->
+ <section class="intro-single">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-lg-8">
+          <div class="title-single-box">
+            <h1 class="title-single">View Complaints</h1>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-4">
+          <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="index.html">Home</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                View complaints
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--/ Intro Single End /-->
+
+  <!--/ Contact Star /-->
+  <section class="contact">
+    <div class="container">
+      <div class="row">
+       
+        <div class="col-sm-12 ">
+          
+             <table border="1" style="width: 100%;">
+                <tr>
+                    <th>Member Name</th>
+                    <th>Issue</th>
+                    <th>Details</th>
+                    <th>Date</th>
+                    <th>Cleared</th>
+                    <!-- <th>Assign Work</th>
+                    <th>Remove</th> -->
+                </tr>
+                {% for i in result %}
+                <tr>
+                    <td>{{i.m_name}}</td>
+                    <td>{{i.issue}}</td>
+                    <td>{{i.detail}}</td>
+                    <td>{{i.date}}</td>
+                    <td><a class="btn btn-success" href="clear/{{i.id}}">Issue Cleared</a></td>
+                </tr>
+                {% endfor %}
+             </table>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--/ Contact End /-->
+  {% include 'footer.html' %}
+
+  {% endblock %}

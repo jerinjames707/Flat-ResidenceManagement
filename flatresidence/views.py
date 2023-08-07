@@ -63,6 +63,7 @@ def addlogin(request):
         if userdetails.password == request.POST['password']:
             request.session['mid'] = userdetails.id
             request.session['mname'] = userdetails.name
+            request.session['mtype'] = userdetails.typee 
 
             request.session['memail'] = email
             return redirect(index)
@@ -360,8 +361,9 @@ def add_assign_work(request):
     return render(request,'index.html',{'message':'Successfully Assigned'})
 
 def view_members(request):
-    a=member.objects.all()
-    return render(request,'view_members.html',{'result':a})
+    a=member.objects.filter(typee='Renter')
+    b=member.objects.filter(typee='Resident')
+    return render(request,'view_members.html',{'result':a,'result1':b})
 
 def remove_member(request,id):
     a=member.objects.get(id=id)
@@ -420,12 +422,12 @@ def addpayment(request):
         cardtype=request.POST.get('cardtype')
         cardname=request.POST.get('cardname')
         cardnumber=request.POST.get('cardnumber')
-        message=request.POST.get('message')
+        message=request.POST.get('amount')
         cvv=request.POST.get('cvv')
         m_id=request.session['mid']  
         ins=payments(typee=typee,cardtype=cardtype,m_id=m_id,cvv=cvv,cardnumber=cardnumber,message=message,cardname=cardname)
         ins.save()
-    return render(request,'index.html',{'message':'Successfully Payed'})
+    return render(request,'index.html',{'message':'Successfully Paied'})
 
 def payments_view(request):
     a=payments.objects.all()
@@ -435,6 +437,49 @@ def payments_view(request):
             if str(i.m_id)==str(j.id):
                i.m_id=j.name 
     return render(request,'payments_view.html',{'result':a})
+
+def searchdate(request):
+    if request.method == "POST":
+        start = request.POST.get('s_date')
+        end = request.POST.get('e_date')
+
+        crp = payments.objects.filter(date__range=[start, end])
+
+        user3 = member.objects.all()
+        for i in crp:
+            for j in user3:
+                if str(i.m_id) == str(j.id):
+                    i.m_id = j.name
+
+        return render(request, 'payments_view.html', {'result': crp})
+    else:
+        crp = payments.objects.all()
+        user3 = member.objects.all()
+        for i in crp:
+            for j in user3:
+                if str(i.m_id) == str(j.id):
+                    i.m_id = j.name
+        return render(request, 'payments_view.html', {'result': crp})
+    
+def search(request):
+    if request.method == "POST":
+        title = request.POST.get('date')
+        #print(title)    
+        crp = payments.objects.filter(date=title)
+        user3 = member.objects.all()
+        for i in crp:
+            for j in user3:
+                if str(i.m_id) == str(j.id):
+                    i.m_id = j.name
+        return render(request,'payments_view.html',{'result': crp})
+    else:
+        crp = payments.objects.all()
+        user3 = member.objects.all()
+        for i in crp:
+            for j in user3:
+                if str(i.m_id) == str(j.id):
+                    i.m_id = j.name
+        return render(request,'payments_view.html',{'result': crp})
 
 def view_workassign(request):
     a=work_assign.objects.all()
@@ -446,3 +491,36 @@ def my_bookings(request):
     b=gym_booking.objects.filter(m_id=m_id)
     c=pool_booking.objects.filter(m_id=m_id)
     return render(request,'my_bookings.html',{'result':a,'result1':b,'result2':c})
+
+def payhistory(request):
+    p=request.session['mid']
+    a=payments.objects.filter(m_id=p)
+    return render(request,'payhistory.html',{'result':a})
+
+def invoice(request,id):
+    pro = payments.objects.get(id=id)
+    us = member.objects.get(id=pro.m_id)
+
+    return render(request,'invoice.html',{'result':pro, 'user': us})
+
+def complaint(request):
+    return render(request,'complaint.html')
+
+def addcomplaint(request):
+    if request.method=='POST':
+        issue=request.POST.get('issue')
+        detail=request.POST.get('detail')
+        m_name=request.session['mname']  
+        ins=complaints(issue=issue,detail=detail,m_name=m_name)
+        ins.save()
+    return render(request,'index.html',{'message':'Successfully Registered'})
+
+def view_complt(request):
+    a=complaints.objects.all()
+    return render(request,'view_complt.html',{'result':a})
+
+
+def clear(request,id):
+    a=complaints.objects.get(id=id)
+    a.delete()
+    return redirect(view_complt)

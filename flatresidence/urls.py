@@ -88,6 +88,19 @@ urlpatterns = [
     path('addannouncement',views.addannouncement),
     path('view_announcement',views.view_announcement),
 
+    path('searchdate',views.searchdate),
+    path('search',views.search),
+    path('payhistory',views.payhistory),
+    path('invoice/<int:id>',views.invoice),
+    path('complaint',views.complaint),
+    path('addcomplaint',views.addcomplaint),
+    path('view_complt',views.view_complt),
+    path('clear/<int:id>',views.clear),
+
+    
+
+
+
 
     path('admin/', admin.site.urls),
 ]
