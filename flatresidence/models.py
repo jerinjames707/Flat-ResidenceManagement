@@ -48,6 +48,7 @@ class hall_booking(models.Model):
     time=models.CharField(max_length=100)
     m_id=models.CharField(max_length=100)
     seat=models.CharField(max_length=100)
+    hour=models.CharField(max_length=100)
     status=models.CharField(max_length=100)
 
 class pool_booking(models.Model):

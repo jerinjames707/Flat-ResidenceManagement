@@ -233,8 +233,9 @@ def addhallbook(request):
         name=request.POST.get('name')
         time=request.POST.get('time')
         seat=request.POST.get('seat')
+        hour=request.POST.get('hour')
         m_id=request.session['mid']  
-        ins=hall_booking(name=name,time=time,m_id=m_id,status='pending',seat=seat)
+        ins=hall_booking(name=name,time=time,m_id=m_id,status='pending',seat=seat,hour=hour)
         ins.save()
     return render(request,'index.html',{'message':'Successfully Booked'})
 
@@ -255,8 +256,9 @@ def accept_hall(request,id):
     b=sel.time
     c=sel.m_id
     d=sel.seat
+    e=sel.hour
    
-    upd=hall_booking(name=a,time=b,m_id=c,seat=d,status='approved',id=id)
+    upd=hall_booking(name=a,time=b,m_id=c,seat=d,hour=e,status='approved',id=id)
     upd.save()
     return redirect(view_hallbooking)
 
@@ -266,8 +268,9 @@ def reject_hall(request,id):
     b=sel.time
     c=sel.m_id
     d=sel.seat
+    e=sel.hour
 
-    upd=hall_booking(name=a,time=b,m_id=c,seat=d,status='Rejected',id=id)
+    upd=hall_booking(name=a,time=b,m_id=c,seat=d,hour=e,status='Rejected',id=id)
     upd.save()
     return redirect(view_hallbooking)
 
