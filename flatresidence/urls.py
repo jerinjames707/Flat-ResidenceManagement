@@ -96,6 +96,8 @@ urlpatterns = [
     path('addcomplaint',views.addcomplaint),
     path('view_complt',views.view_complt),
     path('clear/<int:id>',views.clear),
+    path('rent/<int:id>',views.rent),
+    path('rent/addrent',views.addrent),
 
     
 

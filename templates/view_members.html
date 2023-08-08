@@ -49,6 +49,7 @@
                     <th>Phone</th>
                     <th>Flat Number</th>
                     <th>Number of members</th>
+                   
                     <th>Remove</th>
                 </tr>
                 {% for i in result1 %}
@@ -58,6 +59,7 @@
                     <td>{{i.phone}}</td>
                     <td>{{i.flat_no}}</td>
                     <td>{{i.no_member}}</td>
+                   
                     <td><a class="btn btn-success" href="remove_member/{{i.id}}">Remove</a></td>
                 </tr>
                 {% endfor %}
@@ -80,6 +82,7 @@
                     <th>Phone</th>
                     <th>Flat Number</th>
                     <th>Number of members</th>
+                    <th>Add Rent</th>
                     <th>Remove</th>
                 </tr>
                 {% for i in result %}
@@ -89,6 +92,7 @@
                     <td>{{i.phone}}</td>
                     <td>{{i.flat_no}}</td>
                     <td>{{i.no_member}}</td>
+                    <td><a class="btn btn-success" href="rent/{{i.id}}">Rent</a></td>
                     <td><a class="btn btn-success" href="remove_member/{{i.id}}">Remove</a></td>
                 </tr>
                 {% endfor %}

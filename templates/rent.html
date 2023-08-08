@@ -1,0 +1,85 @@
+ 
+ {% block content %}
+ {% load static %}
+ 
+ {% include 'header.html' %}
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.7.2.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+ <!--/ Intro Single star /-->
+ <section class="intro-single">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12 col-lg-8">
+          <div class="title-single-box">
+            <h1 class="title-single">Add Rent</h1>
+          </div>
+        </div>
+        <div class="col-md-12 col-lg-4">
+          <nav aria-label="breadcrumb" class="breadcrumb-box d-flex justify-content-lg-end">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="index.html">Home</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                rent
+              </li>
+            </ol>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--/ Intro Single End /-->
+
+  <!--/ Contact Star /-->
+  <section class="contact">
+    <div class="container">
+      <div class="row">
+       
+        <div class="col-sm-12 section-t8">
+          <div class="row">
+            <div class="col-md-7">
+              <form class="form-a contactForm" action="addrent" method="post" role="form">
+                {% csrf_token %}
+                <div id="sendmessage">Your message has been sent. Thank you!</div>
+                <div id="errormessage"></div>
+                <div class="row">
+                  <div class="col-md-6 mb-3">
+                    <div class="form-group">
+                        Member Name
+                      <input type="text" name="name" readonly value="{{result.name}}" class="form-control form-control-lg form-control-a" placeholder="Gym Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                      <input type="text" name="m_id" hidden value="{{result.id}}" class="form-control form-control-lg form-control-a" placeholder="Gym Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                      <div class="validation"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <div class="form-group">
+                        Flat Number
+                      <input type="text"  readonly value="{{result.flat_no}}" class="form-control form-control-lg form-control-a" placeholder="Gym Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars">
+                      <div class="validation"></div>
+                    </div>
+                  </div>
+                  <div class="col-md-6 mb-3">
+                    <div class="form-group">
+                      <input type="number" name="amount"  class="form-control form-control-lg form-control-a" placeholder="Amount" >
+                      <div class="validation"></div>
+                    </div>
+                  </div>
+                 
+                  <div class="col-md-12">
+                    <button type="submit" class="btn btn-a">Book</button>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!--/ Contact End /-->
+  {% include 'footer.html' %}
+
+  {% endblock %}

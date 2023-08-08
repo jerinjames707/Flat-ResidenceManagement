@@ -368,6 +368,35 @@ def view_members(request):
     b=member.objects.filter(typee='Resident')
     return render(request,'view_members.html',{'result':a,'result1':b})
 
+def rent(request,id):
+    a=member.objects.get(id=id)
+    return render(request,'rent.html',{'result':a})
+
+def addrent(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        m_id = request.POST.get('m_id')
+        amount = request.POST.get('amount') 
+        
+        # Check if a record with the provided m_id already exists
+        existing_rent = rents.objects.filter(m_id=m_id).first()
+        
+        if existing_rent:
+            # A record with the provided m_id already exists
+            # You can choose to update the existing record or show an error message
+            # For example, updating the existing record's name and amount
+            existing_rent.name = name
+            existing_rent.amount = amount
+            existing_rent.save()
+            message = 'Existing record updated'
+        else:
+            # No record with the provided m_id exists, create a new record
+            ins = rents(name=name, m_id=m_id, amount=amount)
+            ins.save()
+            message = 'Successfully Added'
+            
+    return render(request, 'index.html', {'message': message})
+
 def remove_member(request,id):
     a=member.objects.get(id=id)
     a.delete()
@@ -417,20 +446,34 @@ def cmplt_work(request,id):
     return redirect(work_report)
 
 def payment(request):
-    return render(request,'payment.html')
+    m_id=request.session['mid'] 
+    sel=rents.objects.get(m_id=m_id)
+    return render(request,'payment.html',{'result':sel})
+
 
 def addpayment(request):
-    if request.method=='POST':
-        typee=request.POST.get('typee')
-        cardtype=request.POST.get('cardtype')
-        cardname=request.POST.get('cardname')
-        cardnumber=request.POST.get('cardnumber')
-        message=request.POST.get('amount')
-        cvv=request.POST.get('cvv')
-        m_id=request.session['mid']  
-        ins=payments(typee=typee,cardtype=cardtype,m_id=m_id,cvv=cvv,cardnumber=cardnumber,message=message,cardname=cardname)
-        ins.save()
-    return render(request,'index.html',{'message':'Successfully Paied'})
+    if request.method == 'POST':
+        typee = request.POST.get('typee')
+        cardtype = request.POST.get('cardtype')
+        cardname = request.POST.get('cardname')
+        cardnumber = request.POST.get('cardnumber')
+        message = request.POST.get('amount')
+        cvv = request.POST.get('cvv')
+        m_id = request.session['mid']  
+
+        # Check if a record with the provided m_id and typee already exists
+        existing_payment = payments.objects.filter(m_id=m_id, typee=typee).first()
+
+        if existing_payment:
+            # A record with the provided m_id and typee already exists
+            # You can choose to show an error message
+            message = 'Payment already made for this Month'
+        else:
+            ins = payments(typee=typee, cardtype=cardtype, m_id=m_id, cvv=cvv, cardnumber=cardnumber, message=message, cardname=cardname)
+            ins.save()
+            message = 'Successfully Paid'
+            
+    return render(request, 'index.html', {'message': message})
 
 def payments_view(request):
     a=payments.objects.all()

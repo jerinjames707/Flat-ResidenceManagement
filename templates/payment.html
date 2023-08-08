@@ -43,7 +43,13 @@
                 <div id="sendmessage">Your message has been sent. Thank you!</div>
                 <div id="errormessage"></div>
                 <div class="row">
-                  
+                  <div class="col-md-12 mb-3">
+                    <div class="form-group">
+                      <label for="">Rent Amount</label>
+                      <input type="text" name="amount" readonly value="{{result.amount}}" required class="form-control form-control-lg form-control-a" placeholder="Amount"  >
+                      <div class="validation"></div>
+                    </div>
+                  </div>
                   <div class="col-md-6 mb-3">
                     <div class="form-group">
                       <select name="typee" aria-readonly="true" id="" required class="form-control form-control-lg form-control-a">
@@ -91,12 +97,7 @@
                       <div class="validation"></div>
                     </div>
                   </div>
-                  <div class="col-md-12 mb-3">
-                    <div class="form-group">
-                      <input type="text" name="amount" required class="form-control form-control-lg form-control-a" placeholder="Amount"  >
-                      <div class="validation"></div>
-                    </div>
-                  </div>
+                  
                   <div class="col-md-12">
                     <button type="submit" class="btn btn-a">Pay</button>
                   </div>

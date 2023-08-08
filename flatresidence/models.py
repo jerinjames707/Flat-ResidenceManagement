@@ -80,3 +80,8 @@ class complaints(models.Model):
     detail=models.CharField(max_length=100)
     m_name=models.CharField(max_length=100)
     date = models.DateField(default=timezone.now)
+
+class rents(models.Model):
+    name=models.CharField(max_length=100)
+    m_id=models.CharField(max_length=100)
+    amount=models.CharField(max_length=100)
